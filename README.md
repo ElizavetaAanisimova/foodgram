@@ -20,11 +20,11 @@ docker-compose up -d --build
 ```
 3. Выполнить миграцию базы данных
 ```
-docker-compose exec web python manage.py migrate --noinput
+docker-compose exec backend python manage.py migrate --noinput
 ```
 4. Собрать статические файлы
 ```
-docker-compose exec web python manage.py collectstatic --no-input
+docker-compose exec backend python manage.py collectstatic --no-input
 ```
 5. Остановить контейнер
 ```
@@ -32,7 +32,7 @@ docker-compose down
 ```
 ## Создание суперпользователя
 ```
-docker-compose run python python manage.py createsuperuser
+docker-compose run backend python manage.py createsuperuser
 ```
 ## Заполнение базы начальными данными
 ```
