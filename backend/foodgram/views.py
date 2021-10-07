@@ -62,7 +62,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if request.method == 'GET':
             if Favorite.objects.filter(user=user, recipe=recipe).exists():
                 data = {
-                    'errors': 'Рецепт уже в избранном, загляни'
+                    'errors': 'Рецепт уже в Избранном, загляни'
                 }
                 return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
             favorite = Favorite.objects.create(user=user, recipe=recipe)
@@ -71,7 +71,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         if not Favorite.objects.filter(user=user, recipe=recipe).exists():
             data = {
-                'errors': 'Такого рецепта нет в избранном'
+                'errors': 'Такого рецепта нет в Избранном'
             }
             return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
         Favorite.objects.filter(user=user, recipe=recipe).delete()
