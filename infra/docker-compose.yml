@@ -22,7 +22,7 @@ services:
 
 
   frontend:
-    image: lizvasilieva2016/foodgram-project-react-frontend:latest
+    image: lizvasilieva2016/foodgram-project-react-frontend:v1.0.0
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
