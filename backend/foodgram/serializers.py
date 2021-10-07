@@ -66,7 +66,7 @@ class RecipeListSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = (
             'id', 'author', 'name', 'image', 'text', 'ingredients',
-            'tags', 'cooking_time',  'is_favorited', 'is_in_shopping_cart',)
+            'tags', 'cooking_time', 'is_favorited', 'is_in_shopping_cart')
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
