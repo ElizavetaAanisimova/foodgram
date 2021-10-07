@@ -1,25 +1,23 @@
 from django.http import HttpResponse
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, permissions, status
 from django.shortcuts import get_object_or_404
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
+from django_filters.rest_framework import DjangoFilterBackend
 from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from .models import (Tag, Ingredient, IngredientInRecipe,
-                     Recipe, Favorite, ShoppingCart)
-from .serializers import (TagSerializer,
-                          IngredientSerializer,
-                          RecipeListSerializer,
-                          RecipeCreateSerializer,
-                          FavoriteSerializer,
-                          ShoppingCartSerializer)
-from .permissions import AuthorOrReadOnly
-from .pagination import CustomPageNumberPaginator
-from .custom_mixins import RetrieveListViewSet
-from .filters import IngredientsFilter, RecipeFilter
+from reportlab.pdfgen import canvas
+from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from .custom_mixins import RetrieveListViewSet
+from .filters import IngredientsFilter, RecipeFilter
+from .models import (Favorite, Ingredient, IngredientInRecipe, Recipe,
+                     ShoppingCart, Tag)
+from .pagination import CustomPageNumberPaginator
+from .permissions import AuthorOrReadOnly
+from .serializers import (FavoriteSerializer, IngredientSerializer,
+                          RecipeCreateSerializer, RecipeListSerializer,
+                          ShoppingCartSerializer, TagSerializer)
 
 
 class IngredientViewSet(RetrieveListViewSet):

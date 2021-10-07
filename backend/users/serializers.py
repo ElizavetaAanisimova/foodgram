@@ -1,7 +1,7 @@
-from djoser.serializers import UserSerializer, UserCreateSerializer
-from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from djoser.serializers import UserCreateSerializer, UserSerializer
 from foodgram.models import Follow
+from rest_framework import serializers
 
 User = get_user_model()
 

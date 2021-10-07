@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
-from .serializers import CustomUserSerializer
+from djoser.views import UserViewSet
 from foodgram.models import Follow
 from foodgram.serializers import FollowSerializer
-from djoser.views import UserViewSet
 from rest_framework import permissions, status
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 
+from .serializers import CustomUserSerializer
 
 User = get_user_model()
 

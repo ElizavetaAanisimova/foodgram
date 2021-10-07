@@ -1,8 +1,10 @@
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
-from .models import Tag, Ingredient, IngredientInRecipe, Recipe, Follow, Favorite, ShoppingCart
 from users.serializers import CustomUserSerializer
+
+from .models import (Favorite, Follow, Ingredient, IngredientInRecipe, Recipe,
+                     ShoppingCart, Tag)
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -178,7 +180,8 @@ class FollowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
         fields = (
-            'email', 'id', 'username', 'first_name', 'last_name', 'is_subscribed', 'recipes', 'recipes_count'
+            'email', 'id', 'username', 'first_name', 'last_name',
+            'is_subscribed', 'recipes', 'recipes_count'
         )
 
         validators = [
@@ -192,7 +195,7 @@ class FollowSerializer(serializers.ModelSerializer):
         if self.context.get('request').method == 'POST':
             if self.context.get('request').user == following:
                 raise serializers.ValidationError(
-                    'Вы не можете стать своим подписчиком, хотя вы очень интересный человек:)')
+                    'Вы не можете стать своим подписчиком:)')
         return following
 
     def get_is_subscribed(self, obj):
