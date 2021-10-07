@@ -76,10 +76,6 @@ jobs:
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             sudo docker-compose up -d
             sudo docker-compose exec -T backend python manage.py collectstatic --no-input
-            docker-compose exec backend python manage.py makemigrations users
-            docker-compose exec backend python manage.py makemigrations foodgram
-            sudo docker-compose exec -T backend python manage.py migrate
-            sudo docker-compose exec -T backend python manage.py loaddata dump.json 
   
   send_message:
     runs-on: ubuntu-latest
