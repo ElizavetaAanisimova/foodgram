@@ -32,7 +32,7 @@ docker-compose down
 ```
 ## Создание суперпользователя
 ```
-docker-compose run web python manage.py createsuperuser
+docker-compose run python python manage.py createsuperuser
 ```
 ## Заполнение базы начальными данными
 ```
@@ -42,7 +42,7 @@ docker-compose exec -ti container_name python manage.py loaddata fixtures.json
 Документация будет доступна после запуска проекта по адресу `api/docs/`.
 
 ## Workflow
-![example workflow](https://github.com/ElizavetaAanisimova/foodgram-project-react/actions/workflows/yamdb_workflow.yml/badge.svg)
+![example workflow](https://github.com/ElizavetaAanisimova/foodgram-project-react/actions/workflows/main.yml/badge.svg)
 
 ## Адрес проекта
 http://130.193.52.48/recipes/
