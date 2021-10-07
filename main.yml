@@ -79,7 +79,6 @@ jobs:
             sudo docker-compose exec backend python manage.py makemigrations users
             sudo docker-compose exec backend python manage.py makemigrations foodgram
             sudo docker-compose exec -T backend python manage.py migrate
-            sudo docker-compose exec -T backend python manage.py loaddata dump.json 
   
   send_message:
     runs-on: ubuntu-latest
