@@ -71,7 +71,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         if not Favorite.objects.filter(user=user, recipe=recipe).exists():
             data = {
-                'errors': 'Такого рецепта еще нет в Избранном'
+                'errors': 'Такого рецепта нет в Избранном'
             }
             return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
         Favorite.objects.filter(user=user, recipe=recipe).delete()
