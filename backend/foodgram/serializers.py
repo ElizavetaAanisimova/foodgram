@@ -86,8 +86,9 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'id', 'author', 'name', 'image', 'text', 'ingredients',
             'tags', 'cooking_time', 'is_favorited', 'is_in_shopping_cart',)
 
-    def validate(self, data):
+    def validate_ingredients(self, data):
         ingredient_data = self.initial_data.get('ingredients')
+        ingredients_id_list = []
         if not ingredient_data:
             raise serializers.ValidationError(
                 'В вашем рецепте должен быть хотя бы один ингредиент')
@@ -95,6 +96,19 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             if int(ingredient.get('amount')) <= 0:
                 raise serializers.ValidationError(
                     'Количество ингредиента должно быть больше нуля!')
+            ingredients_id_list.append(ingredient['id'])
+        unique_ingredients = set(ingredients_id_list)
+        if len(ingredients_id_list) > len(unique_ingredients):
+            raise serializers.ValidationError(
+                'Ингредиенты не должны повторяться'
+            )
+        return data
+
+    def validate_tags(self, data):
+        tag_data = self.initial_data.get('tags')
+        if not tag_data:
+            raise serializers.ValidationError(
+                'В вашем рецепте должен быть хотя бы один тэг')
         return data
 
     def validate_cooking_time(self, data):
