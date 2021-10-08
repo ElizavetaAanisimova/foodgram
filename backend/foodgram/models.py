@@ -137,7 +137,7 @@ class IngredientInRecipe(models.Model):
         verbose_name='Рецепт'
     )
     amount = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(1, 'Количество не может быть меньше 1')],
         default=1,
         verbose_name='Количество ингредиента'
     )
@@ -145,6 +145,12 @@ class IngredientInRecipe(models.Model):
     class Meta:
         verbose_name = 'Количество ингредиента в рецепте'
         verbose_name_plural = verbose_name
+        constraints = [
+            models.UniqueConstraint(
+                fields=['ingredient', 'recipe'],
+                name='unique_ingredients'
+            )
+        ]
 
     def __str__(self):
         return f'{self.ingredient} in {self.recipe}'
