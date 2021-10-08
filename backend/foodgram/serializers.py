@@ -87,9 +87,8 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'tags', 'cooking_time', 'is_favorited', 'is_in_shopping_cart',)
 
     def validate_ingredients(self, data):
-        ingredient_data = self.initial_data.get('ingredients')
         ingredients_id_list = []
-        if not ingredient_data:
+        if not data:
             raise serializers.ValidationError(
                 'В вашем рецепте должен быть хотя бы один ингредиент')
         for ingredient in data:
@@ -105,8 +104,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         return data
 
     def validate_tags(self, data):
-        tag_data = self.initial_data.get('tags')
-        if not tag_data:
+        if not data:
             raise serializers.ValidationError(
                 'В вашем рецепте должен быть хотя бы один тэг')
         return data
