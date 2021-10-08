@@ -148,6 +148,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 f"{name} - {data['amount']} {data['measurement_unit']}"
             )
             height -= 25
+            if height == 50:
+                pdf.showPage()
+                pdf.setFont('Neocyr', 16)
+                height = 700
         pdf.showPage()
         pdf.save()
         return response

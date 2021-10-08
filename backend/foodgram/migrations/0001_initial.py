@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                     upload_to='foodgram/media/', verbose_name='Изображение')),
                 ('text', models.TextField(verbose_name='Описание')),
                 ('cooking_time', models.PositiveIntegerField(default=1, validators=[
-                 django.core.validators.MinValueValidator(1)], verbose_name='Время приготовления')),
+                 django.core.validators.MinValueValidator(1, 'Количество не может быть меньше 1')], verbose_name='Время приготовления')),
                 ('pub_date', models.DateTimeField(
                     auto_now_add=True, verbose_name='Дата публикации')),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,

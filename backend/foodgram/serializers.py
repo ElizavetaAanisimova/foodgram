@@ -88,13 +88,19 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         ingredient_data = self.initial_data.get('ingredients')
-        if ingredient_data == []:
+        if not ingredient_data:
             raise serializers.ValidationError(
                 'В вашем рецепте должен быть хотя бы один ингредиент')
         for ingredient in ingredient_data:
             if int(ingredient.get('amount')) <= 0:
                 raise serializers.ValidationError(
                     'Количество ингредиента должно быть больше нуля!')
+        return data
+
+    def validate_cooking_time(self, data):
+        if data <= 0:
+            raise serializers.ValidationError('Время готовки не может быть'
+                                              ' отрицательным числом или нулем!')
         return data
 
     def add_recipe_ingredient(self, ingredients, recipe):
