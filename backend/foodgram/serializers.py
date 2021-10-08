@@ -87,7 +87,8 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'tags', 'cooking_time', 'is_favorited', 'is_in_shopping_cart',)
 
     def validate_ingredients(self, data):
-        ingredient_data = self.initial_data.get('ingredients')
+        # ingredient_data = self.initial_data.get('ingredients')
+        ingredient_data = self.initial_data.get('ingredientinrecipe_set')
         ingredients_id_list = []
         if not ingredient_data:
             raise serializers.ValidationError(
@@ -114,7 +115,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     def validate_cooking_time(self, data):
         if data <= 0:
             raise serializers.ValidationError(
-                'Время готовки не может быть меньше 1')
+                'Время приготовления блюда не может быть меньше 1 минуты')
         return data
 
     def add_recipe_ingredient(self, ingredients, recipe):
