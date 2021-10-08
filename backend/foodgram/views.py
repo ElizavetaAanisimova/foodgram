@@ -117,7 +117,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         user = request.user
         shopping_list = {}
         ingredients = IngredientInRecipe.objects.filter(
-            recipe__cart__user=user)
+            recipe__cart__user=user).values_list(
+                'ingredient__name',
+                'amount',
+                'ingredient__measurement_unit',
+                named=True)
         for ingredient in ingredients:
             name = ingredient.ingredient.name
             measurement_unit = ingredient.ingredient.measurement_unit
