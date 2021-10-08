@@ -99,8 +99,8 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def validate_cooking_time(self, data):
         if data <= 0:
-            raise serializers.ValidationError('Время готовки не может быть'
-                                              ' отрицательным числом или нулем!')
+            raise serializers.ValidationError(
+                'Время готовки не может быть меньше 1')
         return data
 
     def add_recipe_ingredient(self, ingredients, recipe):
