@@ -48,9 +48,8 @@ sudo docker-compose run backend python manage.py loaddata dump.json
 http://130.193.52.48/recipes/
 
 ## Данные для входа в админку
-Почта: 	Admin@admin.ru
-```
-Пароль: Admin123456789
+1. Почта: 	Admin@admin.ru
+2. Пароль: Admin123456789
 
 ## Автор
 Елизавета Анисимова
